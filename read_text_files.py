@@ -62,6 +62,13 @@ def h_stop_words(): # generate a hashtable containing the stop words of text doc
         
     return h
 
+def empty_buckets(h):
+    count = 0
+    for bucket in h.bucket:
+        if len(bucket) <= 0:
+            count += 1
+    return count
+
 def numKeys(h): # return num of keys in hashtable
     numKeys = 0
     for bucket in h.bucket:
@@ -77,7 +84,8 @@ if __name__ == '__main__':
     numKeys = numKeys(h)
     print('Analysis of Stop Word Table:\n---------------------------------')
     print('Total Buckets:',len(h.bucket),', Total Records:',numKeys,', Load Factor: {0:.3f}'.format(load_factor(h)))
-    print()
+    print('Empty Bucket Fraction in Table: {0:.3f}'.format(empty_buckets(h)/len(h.bucket)))
+    print('Long Bucket Fraction in Table: {0:.3f}'.format(long_bucket(h)/len(h.bucket)))
     
     
     
