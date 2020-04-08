@@ -4,14 +4,16 @@ import bst
 
 def bst_3nodes(L):
     T=bst.BST()
-    T.root = bst.BSTNode(L[0])
-    T.left = bst.BSTNode(L[1])
-    T.right = bst.BSTNode(L[2])
+    for i in range(3):
+        T.insert(L[i])
     return T
 
 def has_depth(T,d):
-    return False
-
+    if type(T) == bst.BST:
+        T = T.root
+    if d == 0:
+        if T != None:
+            has_depth = True
 def add_n(T,n):
     return 
         
