@@ -2,14 +2,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import bst
 
-def bst_3nodes(L):
+def bst_3nodes(L): # builds a tree with 3 Nodes
     T=bst.BST()
     T.insert(L[1])
     T.insert(L[0])
     T.insert(L[2])
     return T
 
-def has_depth(T,d):
+def has_depth(T,d): # checks if the tree has depth d
     if type(T) == bst.BST:
         T = T.root
     depth = False
@@ -21,7 +21,7 @@ def has_depth(T,d):
             return depth
     return has_depth(T.left,d-1) or has_depth(T.right,d-1)
     
-def add_n(T,n):
+def add_n(T,n): # adds n to each element in every node
     if type(T) == bst.BST:
         T = T.root
     if T is None:
@@ -30,20 +30,24 @@ def add_n(T,n):
     add_n(T.left,n)
     add_n(T.right,n)
         
-def get_path(T,k):
+def get_path(T,k): #iterative approach to problem
     if type(T) == bst.BST:
         T = T.root
     temp = T
-    path = ''
+    path , found= '', False
     while temp is not None:
         if temp.data == k:
-            return path
+            found = True
+            break
         if k < temp.data:
             path += 'L'
             temp = temp.left
         else:
             path += 'R'
             temp = temp.right
+    if not found:
+        return None
+    return path
         
     # path = ''
     # found = False
@@ -84,7 +88,7 @@ if __name__ == "__main__":
     print(has_depth(T,6))                    # False        
     
     print('Question 3')     
-    print(add_n(T,5))   
+    add_n(T,5)   
     T.draw()
     
     A =[11, 6, 7, 16, 17, 2, 4, 18, 14, 8, 15, 1,  20, 13]
