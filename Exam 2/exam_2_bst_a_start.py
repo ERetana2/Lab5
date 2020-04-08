@@ -4,21 +4,45 @@ import bst
 
 def bst_3nodes(L):
     T=bst.BST()
-    for i in range(3):
-        T.insert(L[i])
+    T.insert(L[1])
+    T.insert(L[0])
+    T.insert(L[2])
     return T
 
 def has_depth(T,d):
     if type(T) == bst.BST:
         T = T.root
+    depth = False
+    if T is None:
+        return depth
     if d == 0:
         if T != None:
-            has_depth = True
+            depth = True
+            return depth
+    return has_depth(T.left,d-1) or has_depth(T.right,d-1)
+    
 def add_n(T,n):
-    return 
+    if type(T) == bst.BST:
+        T = T.root
+    if T is None:
+        return
+    T.data += n
+    add_n(T.left,n)
+    add_n(T.right,n)
         
 def get_path(T,k):
-    return ''
+    if type(T) == bst.BST:
+        T = T.root
+    path = ''
+    if T is None:
+        return ''
+    if k < T.data:
+        cur ='L'
+        path = cur + get_path(T.left,k)
+    else:
+        cur ='R'
+        path = curr + get_path(T.right,k)
+    return path
 
 if __name__ == "__main__":
     plt.close('all')
