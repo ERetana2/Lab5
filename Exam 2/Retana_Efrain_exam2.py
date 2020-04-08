@@ -33,16 +33,32 @@ def add_n(T,n):
 def get_path(T,k):
     if type(T) == bst.BST:
         T = T.root
+    temp = T
     path = ''
-    if T is None:
-        return ''
-    if k < T.data:
-        cur ='L'
-        path = cur + get_path(T.left,k)
-    else:
-        cur ='R'
-        path = curr + get_path(T.right,k)
-    return path
+    while temp is not None:
+        if temp.data == k:
+            return path
+        if k < temp.data:
+            path += 'L'
+            temp = temp.left
+        else:
+            path += 'R'
+            temp = temp.right
+        
+    # path = ''
+    # found = False
+    # if T is None:
+    #     return ''
+    # if k == T.data:
+    #     found = True
+    # if k < T.data:
+    #     cur ='L'
+    #     path = cur + get_path(T.left,k)
+    # else:
+    #     cur ='R'
+    #     path = cur + get_path(T.right,k)
+    
+    # return path
 
 if __name__ == "__main__":
     plt.close('all')
