@@ -9,6 +9,7 @@ import numpy as np
 import os
 import hash_table_chain as htc
 import math
+import time
         
 def get_word_list(text):
     # Receives a string containing a document
@@ -108,7 +109,7 @@ if __name__ == '__main__':
     wl = get_word_list(text)
     
     h_stopWords = create_htc(wl) # create a hashtable that contains stop words list
-
+    
     #-----------STATS--------------#
     print('---------------------------------')
     print('Analysis of Stop Word hash table:')
@@ -118,7 +119,7 @@ if __name__ == '__main__':
     print('Long bucket fraction in table: {0:.3f}'.format(long_buckets(h_stopWords)/len(h_stopWords.bucket)))
     print('Length longest Bucket in Table -> Length:',longest_bucket(h_stopWords))
     print('---------------------------------')
-
+    
     for abstract in abstracts: # iterate through all the set of files in abstract folder and perform 
         # analysis
         f = open(abs_dir+abstract, 'r', encoding="utf8")
@@ -138,6 +139,5 @@ if __name__ == '__main__':
         print('Length longest Bucket in Table -> Length:',longest_bucket(h_abs))
         cWord = common_word(wl)
         print('Most common word:',cWord[0],'- occurs',cWord[1],'times')
-        
         # break # Uncomment to run a single iteration
 
