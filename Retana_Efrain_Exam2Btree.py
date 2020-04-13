@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import btree
 
-def find_k(T,k):
+def find_k(T,k): # fix errors of the find_K implementation
     if type(T) == btree.BTree:
         T = T.root
     if k in T.data:
@@ -22,7 +22,7 @@ def find_k(T,k):
             return find_k(T.child[ch],k)
     return find_k(T.child[-1],k)
 
-def roots_children(T):
+def roots_children(T): # returns a list containing the parent of the leaf nodes
     if type(T) == btree.BTree:
         T = T.root
     L = []
@@ -34,7 +34,7 @@ def roots_children(T):
         L += roots_children(T.child[i])
     return L
 
-def prune_leaves(T):
+def prune_leaves(T): # remove all the leaves of btree
     if type(T) == btree.BTree:
         T = T.root
     for child in T.child:
@@ -44,13 +44,14 @@ def prune_leaves(T):
         prune_leaves(child)
     return
 
-def make_binary(T):
+def make_binary(T): # makes a binary tree containing only the smallest elements of the btree
     if type(T) == btree.BTree:
         T = T.root
     if T.is_leaf:
+        T.data = [T.data[0]]
         return
     T.child = [T.child[0],T.child[1]]
-    T.data = T.data[0]
+    T.data = [T.data[0]]
     for child in T.child:
         make_binary(child)
     return
