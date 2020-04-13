@@ -19,8 +19,8 @@ def find_k(T,k):
     for i in range(len(T.data)):
         if k < T.data[i]:
             ch = i
-            break
-    return find_k(T.child[ch],k)
+            return find_k(T.child[ch],k)
+    return find_k(T.child[-1],k)
 
 def roots_children(T):
     if type(T) == btree.BTree:
@@ -28,15 +28,31 @@ def roots_children(T):
     L = []
     for i in range(len(T.child)):
         if T.child[i].is_leaf:
-            if T.child[i] not in L:
-                L.extend(T.data)
+            for num in T.data:
+                if num not in L:
+                    L.append(num)
         L += roots_children(T.child[i])
     return L
 
 def prune_leaves(T):
+    if type(T) == btree.BTree:
+        T = T.root
+    for child in T.child:
+        if child.is_leaf:
+            T.child = []
+            T.is_leaf = True
+        prune_leaves(child)
     return
 
 def make_binary(T):
+    if type(T) == btree.BTree:
+        T = T.root
+    if T.is_leaf:
+        return
+    T.child = [T.child[0],T.child[1]]
+    T.data = T.data[0]
+    for child in T.child:
+        make_binary(child)
     return
 
 if __name__ == "__main__":  
