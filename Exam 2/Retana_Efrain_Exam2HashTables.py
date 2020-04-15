@@ -1,3 +1,11 @@
+"""
+
+@Author: Efrain Retana
+@Professor: Olac Fuentes
+@TA: Oscar Galindo
+
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import hash_table_chain as htc
@@ -13,11 +21,11 @@ def same_hash_as_k(h,k):
 def intersection(L1,L2):
     ints = []
     h = htc.HashTableChain(len(L1) + len(L2))
-    for i in range(len(L1)):
-        h.insert(L1[i], L1[i])
-    for i in range(len(L2)):
-        if h.insert(L2[i],L2[i]) == -1:
-            ints.append(L2[i])
+    for num in L1:
+        h.insert(num, num)
+    for num in L2:
+        if h.insert(num,num) == -1:
+            ints.append(num)
     return ints
     
 def invert_hash(h):
