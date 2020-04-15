@@ -28,7 +28,7 @@ class HashTableChain:
         b = self.h(key)
         for rec in self.bucket[b]:
             if rec.key == key:
-                # print('Insertion error, key',key,'is already in the table')
+                print('Insertion error, key',key,'is already in the table')
                 return -1
         self.bucket[b].append(HashTableRecord(key,data))      
         return 1

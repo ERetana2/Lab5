@@ -4,21 +4,27 @@ import hash_table_chain as htc
 
 def same_hash_as_k(h,k):
     sh = []
-    for b in h.bucket:
-        for i in b:
-            if h.h(k) == h.h(i.key):
-                sh.append(i.key)
+    b = h.h(k)
+    for i in h.bucket[b]:
+        if h.h(k) == h.h(i.key):
+            sh.append(i.key)
     return sh
     
 def intersection(L1,L2):
     ints = []
+    h = htc.HashTableChain(len(L1) + len(L2))
+    for i in range(len(L1)):
+        h.insert(L1[i], L1[i])
+    for i in range(len(L2)):
+        if h.insert(L2[i],L2[i]) == -1:
+            ints.append(L2[i])
     return ints
     
 def invert_hash(h):
     hi = htc.HashTableChain(len(h.bucket))
     for bucket in h.bucket:
         for list in bucket:
-            hi.insert(list.retrieve(list.key), list.key)
+            hi.insert(h.retrieve(list.key), list.key)
     return hi
     
 
