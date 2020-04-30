@@ -119,25 +119,26 @@ if __name__ == '__main__':
     print('Long bucket fraction in table: {0:.3f}'.format(long_buckets(h_stopWords)/len(h_stopWords.bucket)))
     print('Length longest Bucket in Table -> Length:',longest_bucket(h_stopWords))
     print('---------------------------------')
-    
-    for abstract in abstracts: # iterate through all the set of files in abstract folder and perform 
-        # analysis
-        f = open(abs_dir+abstract, 'r', encoding="utf8")
-        text = f.read()
-        f.close()
-        wl = get_word_list(text)
-        print('\n---------------------------------')
-        print('File:',abstract)
-        # print analysis of abstract
-        print('Total words:',len(wl),',total non-stop words:',len(wl)-remove_stopWords(h_stopWords,wl))
-        print('Analysis of',abstract,'hash table')
-        h_abs = create_htc(wl) # create hashtable containing new list of words after removing stop words
-        print('Total Buckets:',len(h_abs.bucket),', total Records:',numKeys(h_abs),
-              ', load Factor: {0:.3f}'.format(load_factor(h_abs)))
-        print('Empty Bucket Fraction in Table: {0:.3f}'.format(empty_buckets(h_abs)/len(h_abs.bucket)))
-        print('Long bucket fraction in table: {0:.3f}'.format(long_buckets(h_abs)/len(h_abs.bucket)))
-        print('Length longest Bucket in Table -> Length:',longest_bucket(h_abs))
-        cWord = common_word(wl)
-        print('Most common word:',cWord[0],'- occurs',cWord[1],'times')
-        # break # Uncomment to run a single iteration
+    # for abstract in abstracts: # iterate through all the set of files in abstract folder and perform 
+    #     # analysis
+    #     if i == 10:
+    #         break
+    #     f = open(abs_dir+abstract, 'r', encoding="utf8")
+    #     text = f.read()
+    #     f.close()
+    #     wl = get_word_list(text)
+    #     print('\n---------------------------------')
+    #     print('File:',abstract)
+    #     # print analysis of abstract
+    #     print('Total words:',len(wl),',total non-stop words:',len(wl)-remove_stopWords(h_stopWords,wl))
+    #     print('Analysis of',abstract,'hash table')
+    #     h_abs = create_htc(wl) # create hashtable containing new list of words after removing stop words
+    #     print('Total Buckets:',len(h_abs.bucket),', total Records:',numKeys(h_abs),
+    #           ', load Factor: {0:.3f}'.format(load_factor(h_abs)))
+    #     print('Empty Bucket Fraction in Table: {0:.3f}'.format(empty_buckets(h_abs)/len(h_abs.bucket)))
+    #     print('Long bucket fraction in table: {0:.3f}'.format(long_buckets(h_abs)/len(h_abs.bucket)))
+    #     print('Length longest Bucket in Table -> Length:',longest_bucket(h_abs))
+    #     cWord = common_word(wl)
+    #     print('Most common word:',cWord[0],'- occurs',cWord[1],'times')
+    #     # break # Uncomment to run a single iteration
 
